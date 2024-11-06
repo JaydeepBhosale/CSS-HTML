@@ -3,12 +3,11 @@ let updatedTime = 0;
 let interval;
 let isRunning = false;
 
-// Function to format time
 function formatTime(time) {
   return time.toString().padStart(2, '0');
 }
 
-// Start stopwatch function
+
 function startStopwatch() {
   if (!isRunning) {
     isRunning = true;
@@ -17,7 +16,6 @@ function startStopwatch() {
   }
 }
 
-// Stop stopwatch function
 function stopStopwatch() {
   if (isRunning) {
     isRunning = false;
@@ -26,7 +24,6 @@ function stopStopwatch() {
   }
 }
 
-// Reset stopwatch function
 function resetStopwatch() {
   clearInterval(interval);
   isRunning = false;
@@ -38,7 +35,6 @@ function resetStopwatch() {
   document.getElementById("milliseconds").textContent = "000";
 }
 
-// Update stopwatch display
 function updateTime() {
   updatedTime = Date.now() - startTime;
   
@@ -53,7 +49,6 @@ function updateTime() {
   document.getElementById("milliseconds").textContent = milliseconds.toString().padStart(3, '0');
 }
 
-// Store and display previous record
 function checkAndStoreRecord() {
   const prevRecord = localStorage.getItem("previousRecord");
   const currentTime = `${formatTime(Math.floor((updatedTime / (1000 * 60 * 60)) % 24))}:${formatTime(Math.floor((updatedTime / (1000 * 60)) % 60))}:${formatTime(Math.floor((updatedTime / 1000) % 60))}.${updatedTime % 1000}`;
@@ -64,7 +59,6 @@ function checkAndStoreRecord() {
   }
 }
 
-// Display previous record on load
 function displayPreviousRecord() {
   const prevRecord = localStorage.getItem("previousRecord");
   if (prevRecord) {
@@ -76,5 +70,4 @@ function displayPreviousRecord() {
   }
 }
 
-// Run on page load
 displayPreviousRecord();
